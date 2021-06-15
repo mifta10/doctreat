@@ -1,0 +1,7 @@
+.appointment__header {
+  height:600px;
+  position:relative;
+  background-image: url('../../../images/chairBg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
