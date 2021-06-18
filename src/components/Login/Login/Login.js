@@ -1,40 +1,43 @@
 import React, { useContext } from 'react';
-// import { UserContext } from '../../../App';
-// import { useHistory, useLocation } from 'react-router-dom';
+import firebase from 'firebase/app';
+import "firebase/auth";
+import firebaseConfig from './firebase.config';
+import { UserContext } from '../../../App';
+import { useHistory, useLocation } from 'react-router-dom';
 import LoginBg from '../../../images/loginBg.png';
 
 const Login = () => {
-  // const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  // const history = useHistory();
-  // const location = useLocation();
-  // const { from } = location.state || { from: { pathname: "/" } };
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const history = useHistory();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
 
-  // if (firebase.apps.length === 0) {
-  //   firebase.initializeApp(firebaseConfig);
-  // }
+  if (firebase.apps.length === 0) {
+    firebase.initializeApp(firebaseConfig);
+  }
 
-  // const handleGoogleSignIn = () => {
-  //   var provider = new firebase.auth.GoogleAuthProvider();
-  //   firebase.auth().signInWithPopup(provider).then(function (result) {
-  //     const { displayName, email } = result.user;
-  //     const signedInUser = { name: displayName, email }
-  //     setLoggedInUser(signedInUser);
-  //     storeAuthToken();
-  //   }).catch(function (error) {
-  //     const errorMessage = error.message;
-  //     console.log(errorMessage);
-  //   });
-  // }
+  const handleGoogleSignIn = () => {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function (result) {
+      const { displayName, email } = result.user;
+      const signedInUser = { name: displayName, email }
+      setLoggedInUser(signedInUser);
+      storeAuthToken();
+    }).catch(function (error) {
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    });
+  }
 
-  // const storeAuthToken = () => {
-  //   firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
-  //     .then(function (idToken) {
-  //       sessionStorage.setItem('token', idToken);
-  //       history.replace(from);
-  //     }).catch(function (error) {
-  //       // Handle error
-  //     });
-  // }
+  const storeAuthToken = () => {
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function (idToken) {
+        sessionStorage.setItem('token', idToken);
+        history.replace(from);
+      }).catch(function (error) {
+        // Handle error
+      });
+  }
 
   return (
     <div className="login-page container">
@@ -55,7 +58,7 @@ const Login = () => {
             <button className="btn btn-brand">Login</button>
           </div>
           <div className="from-group mt-3 text-center">
-            <button className="btn btn-brand">Continue with Google</button>
+            <button className="btn btn-brand" onClick={handleGoogleSignIn}>Continue with Google</button>
           </div>
         </div>
         <div className="col-md-6 d-none d-md-block align-self-end">
