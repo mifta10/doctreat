@@ -11,7 +11,7 @@ const Sidebar = () => {
     const [isDoctor, setIsDoctor] = useState(false);
 
     useEffect(() => {
-        fetch('https://salty-plateau-71286.herokuapp.com/isDoctor', {
+        fetch('http://localhost:5000/isDoctor', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ email: loggedInUser.email })
@@ -33,33 +33,35 @@ const Sidebar = () => {
                         <FontAwesomeIcon icon={faHome} /> <span>Home</span>
                     </Link>
                 </li>
-                {isDoctor && <div>
-                    <li>
-                        <Link to="/dashboard/allPatients" className="text-white">
-                            <FontAwesomeIcon icon={faCalendar} /> <span>Appointments</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/allPatients" className="text-white">
-                            <FontAwesomeIcon icon={faUsers} /> <span>Patients</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/prescriptions" className="text-white">
-                            <FontAwesomeIcon icon={faFileAlt} /> <span>Prescriptions</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/addDoctor" className="text-white" >
-                            <FontAwesomeIcon icon={faUserPlus} /> <span>Add Doctor</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/doctor/setting" className="text-white" >
-                            <FontAwesomeIcon icon={faCog} /> <span>Settings</span>
-                        </Link>
-                    </li>
-                </div>}
+                {isDoctor &&
+                    <div>
+                        <li>
+                            <Link to="/dashboard/allPatients" className="text-white">
+                                <FontAwesomeIcon icon={faCalendar} /> <span>Appointments</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard/allPatients" className="text-white">
+                                <FontAwesomeIcon icon={faUsers} /> <span>Patients</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/prescriptions" className="text-white">
+                                <FontAwesomeIcon icon={faFileAlt} /> <span>Prescriptions</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/addDoctor" className="text-white" >
+                                <FontAwesomeIcon icon={faUserPlus} /> <span>Add Doctor</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/doctor/setting" className="text-white" >
+                                <FontAwesomeIcon icon={faCog} /> <span>Settings</span>
+                            </Link>
+                        </li>
+                    </div>
+                }
             </ul>
             <div>
                 <Link to="/" className="text-white"><FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span></Link>

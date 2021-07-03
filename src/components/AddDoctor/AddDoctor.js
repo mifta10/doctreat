@@ -16,9 +16,9 @@ const AddDoctor = () => {
     setFile(newFile);
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     const formData = new FormData()
-    formData.append('myFile', file);
+    formData.append('file', file);
     formData.append('name', info.name);
     formData.append('email', info.email);
 
@@ -52,7 +52,7 @@ const AddDoctor = () => {
           </div>
           <div className="form-group">
             <label htmlFor="exampleInputPassword1">Upload a image</label>
-            <input onChange={handleFileChange} type="file" className="form-control" id="exampleInputPassword1" placeholder="Picture" />
+            <input name="file" onChange={handleFileChange} type="file" className="form-control" id="exampleInputPassword1" placeholder="Picture" />
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
