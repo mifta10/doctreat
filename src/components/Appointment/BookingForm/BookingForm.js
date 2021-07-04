@@ -23,7 +23,7 @@ const BookingForm = ({ modalIsOpen, closeModal, appointmentOn, date }) => {
     data.service = appointmentOn;
     data.date = date;
     data.created = new Date();
-   fetch('http://localhost:5000/addAppointment',{
+   fetch('https://marvelous-isle-royale-90944.herokuapp.com/addAppointment',{
      method: 'POST',
      headers: {'Content-Type': 'application/json'},
      body : JSON.stringify(data)
